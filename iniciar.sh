@@ -11,7 +11,7 @@ echo 'Treinando o Rasa........'
 rasa train 
 
 echo 'Iniciando o duckling........'
-gnome-terminal -- docker run -p 8001:8000 rasa/duckling &
+gnome-terminal -- docker run -p 8000:8000 rasa/duckling &
 #docker run -p 8000:8000 rasa/duckling &
 
 echo 'Iniciando o Rasa action.....'
