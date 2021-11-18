@@ -1,0 +1,113 @@
+version: "2.0"
+
+intents:
+  - batepapo
+  - fazerpedido
+  - informacao
+  - cancelar
+
+# entities:
+# - pedido
+# - endereco
+# - time
+
+entities:
+  - PERSON # entity extracted by SpacyEntityExtractor
+  - time # entity extracted by DucklingEntityExtractor
+  - membership_type # custom entity extracted by DIETClassifier
+  - priority # custom entity extracted by DIETClassifier
+
+responses:
+  utter_fazerpedido:
+    - text: "Informe seu pedido separado por vírgulas."
+
+  utter_batepapo/cumprimento:
+    - text: "Olá,\nesse é o canal de vendas da nossa empresa, para saber mais digite 'Quero saber mais.'"
+    - text: "Oi, \nesse é o canal de vendas da nossa empresa, para saber mais digite 'Quero saber mais.'"
+    - text: "Bom dia, \nesse é o canal de vendas da nossa empresa, para saber mais digite 'Quero saber mais.'"
+
+  utter_batepapo/adeus:
+    - text: "Até breve"
+
+  utter_batepapo/querosabermais:
+    - text: "Vendemos espetinhos \nCada espetinho custa R$7.00, com Jantinha R$14.00 \nOpções: \n- carne \n- medalhão de frango \n- linguiça \n- calabresa. \nTambém servimos Jantinha completa com arroz, feijão tropeiro, mandioca e vinagrete. \nFaça seu pedido. \n\nA taxa de entrega é de R$5.00. "
+
+  utter_batepapo/taxadeentrega:
+    - text: "A taxa de entrega é de R$5.00."
+
+  utter_fallback:
+    - text: "Não entendi sua pergunta, pode reformular?"
+
+  utter_ask_pedido:
+    - text: "Informe seu pedido separando os item com virgula (,) ou ponto e virgula (;)."
+  
+  utter_ask_endereco:
+    - text: "Informe seu endereço?"
+
+  utter_ask_data:
+    - text: "Quando quer agendar?"
+
+  utter_ask_formapagamento:
+    - text: "Qual a forma de pagamento?"
+
+  utter_envio_fazerpedido:
+    - text: "Ok, realizando pedido"
+
+  utter_confirma_fazerpedido:
+    - text: "Pedido confirmado, \nSerá entregue no endereço {resultado_endereco} as {resultado_data}, \nO pedido: {resultado_pedido} \nValor total R$ {resultado_valor} \nForma de pagamento: {resultado_formapagamento}"
+
+  utter_cancelamento:
+    - text: "Cancelando..."
+
+slots:
+  pedido:
+    type: text
+    influence_conversation: false
+  endereco:
+    type: text
+    influence_conversation: false
+  valor:
+    type: text
+    influence_conversation: false
+  formapagamento:
+    type: text
+    influence_conversation: false
+  data:
+    type: text
+    influence_conversation: false
+  resultado_pedido:
+    type: text
+    influence_conversation: false
+  resultado_endereco:
+    type: text
+    influence_conversation: false
+  resultado_valor:
+    type: text
+    influence_conversation: false
+  resultado_formapagamento:
+    type: text
+    influence_conversation: false
+  resultado_data:
+    type: text
+    influence_conversation: false
+
+forms:
+  fazerpedido_form:
+    required_slots:
+      pedido:
+        - type: from_text
+      endereco:
+        - type: from_text
+      formapagamento:
+        - type: from_text
+      data:
+        - type: from_entity
+          entity: time
+
+actions:
+  - action_clear_slots
+  - action_submit_fazerpedido
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,90 @@
+version: "2.0"
+
+nlu:
+  - intent: batepapo/cumprimento
+    examples: |
+      - Bom dia
+      - Boa tarde
+      - Boa noite
+      - Olá
+      - Oi
+      - Tudo bem?
+
+  - intent: batepapo/adeus
+    examples: |
+      - Tchau
+      - Adeus
+      - Até logo
+      - Um abraço
+
+  - intent: batepapo/querosabermais
+    examples: |
+      - Quero saber mais.
+      - Pra que você serve?
+      - O que você faz?
+      - Como você funciona?
+
+  - intent: batepapo/taxadeentrega
+    examples: |
+      - Quanto custa para entregar?
+      - Qual a taxa de entrega?
+
+  - intent: fazerpedido
+    examples: |
+      - Quero pedir
+      - Pedir
+      - Quero fazer o pedido
+      - Solicitar entrega
+
+  - intent: informacao
+    examples: |
+      - pedido [Brasília](pedido)
+      - pedido de [São Paulo](pedido)
+      - pedido do [Rio de Janeiro](pedido)
+
+  - intent: cancelar
+    examples: |
+      - quero cancelar
+      - desejo cancelar
+      - cancelar o formulário
+      - cancelar
+  - synonym: Jantinha
+    examples: |
+        - Jantinha
+        - Janta
+        - Refeição
+        - Combo
+  - synonym: Carne
+    examples: |
+        - Carne
+        - Alcatra
+        - Espeto
+  - synonym: Medalão de Frango
+    examples: |
+        - Frango
+        - Medalhão
+        - Galinha
+  - synonym: Linguiça
+    examples: |
+        - Liguiça toscana
+        - Linguiça de boi
+  - synonym: Calabresa
+    examples: |
+        - Calabreza
+        - Linguiça calabresa
+  - synonym: Brasília
+    examples: |
+        - Brasilia
+        - Brasília
+        - BSB
+        - DF
+  - synonym: São Paulo
+    examples: |
+        - São Paulo
+        - SP
+        - Sampa
+  - synonym: Rio de Janeiro
+    examples: |
+        - Rio de Janeiro
+        - Rio
+        - RJ

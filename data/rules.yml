@@ -1,0 +1,48 @@
+version: "2.0"
+
+rules:
+  - rule: conversa fiada
+    steps:
+      - intent: batepapo
+      - action: utter_batepapo
+
+  # - rule: fazer pedido
+  #   steps:
+  #     - intent: fazerpedido
+  #     - action: utter_fazerpedido
+
+  # - rule: informacao
+  #   steps:
+  #     - intent: informacao
+  #     - action: utter_informacao
+
+  - rule: fallback
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
+
+  - rule: Ativa formulario fazerpedido
+    steps:
+      - intent: fazerpedido
+      - action: fazerpedido_form
+      - active_loop: fazerpedido_form
+
+  - rule: Envia formulario
+    condition:
+      - active_loop: fazerpedido_form
+    steps:
+      - action: fazerpedido_form
+      - active_loop: null
+      - action: utter_envio_fazerpedido
+      - action: action_submit_fazerpedido
+      - action: utter_confirma_fazerpedido
+
+  - rule: Cancela formulario
+    condition:
+      - active_loop: fazerpedido_form
+    steps:
+      - intent: cancelar
+      - action: utter_cancelamento
+      - action: action_clear_slots
+      - action: action_deactivate_loop
+      - active_loop: null
